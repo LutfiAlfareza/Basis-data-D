@@ -1,0 +1,183 @@
+use keuangan_pribadi;
+Database changed
+MariaDB [keuangan_pribadi]> CREATE TABLE pemasukan (
+    ->     id_pemasukan INT PRIMARY KEY AUTO_INCREMENT,
+    ->     tanggal_pemasukan DATE NOT NULL,
+    ->     jumlah_pemasukan DECIMAL(15, 2) NOT NULL,
+    ->     sumber_pemasukan VARCHAR(255) NOT NULL,
+    ->     keterangan TEXT
+    -> );
+Query OK, 0 rows affected (0.150 sec)
+
+MariaDB [keuangan_pribadi]> CREATE TABLE pengeluaran (
+    ->     id_pengeluaran INT PRIMARY KEY AUTO_INCREMENT,
+    ->     tanggal_pengeluaran DATE NOT NULL,
+    ->     jumlah_pengeluaran DECIMAL(15, 2) NOT NULL,
+    ->     kategori_pengeluaran VARCHAR(255) NOT NULL,
+    ->     keterangan TEXT
+    -> );
+Query OK, 0 rows affected (0.055 sec)
+
+MariaDB [keuangan_pribadi]> CREATE TABLE tabungan (
+    ->     id_tabungan INT PRIMARY KEY AUTO_INCREMENT,
+    ->     tanggal_transaksi DATE NOT NULL,
+    ->     jenis_transaksi ENUM('Menabung', 'Penarikan') NOT NULL,
+    ->     jumlah DECIMAL(15, 2) NOT NULL,
+    ->     keterangan TEXT
+    -> );
+Query OK, 0 rows affected (0.037 sec)
+
+MariaDB [keuangan_pribadi]> INSERT INTO pemasukan (tanggal_pemasukan, jumlah_pemasukan, sumber_pemasukan, keterangan) VALUES
+    -> ('2025-10-01', 5000000.00, 'Gaji Bulanan', 'Gaji Oktober 2025'),
+    -> ('2025-10-05', 750000.00, 'Proyek Freelance', 'Desain logo untuk klien A'),
+    -> ('2025-10-10', 300000.00, 'Penjualan Barang Bekas', 'Jual meja belajar'),
+    -> ('2025-10-15', 1500000.00, 'Bonus Kinerja', 'Bonus kuartal ketiga'),
+    -> ('2025-10-20', 250000.00, 'Hadiah', 'Hadiah ulang tahun'),
+    -> ('2025-10-25', 1200000.00, 'Proyek Freelance', 'Pembuatan website untuk Klien B'),
+    -> ('2025-11-01', 5000000.00, 'Gaji Bulanan', 'Gaji November 2025'),
+    -> ('2025-11-03', 450000.00, 'Hasil Usaha Sampingan', 'Keuntungan jualan online minggu pertama'),
+    -> ('2025-11-08', 200000.00, 'Cashback', 'Cashback dari transaksi e-commerce'),
+    -> ('2025-11-12', 900000.00, 'Proyek Freelance', 'Jasa penulisan artikel'),
+    -> ('2025-11-18', 500000.00, 'Komisi Penjualan', 'Komisi dari penjualan produk afiliasi'),
+    -> ('2025-11-22', 150000.00, 'Adsense', 'Pendapatan dari blog'),
+    -> ('2025-11-26', 2500000.00, 'Bonus Akhir Tahun', 'Tantiem dari perusahaan'),
+    -> ('2025-12-01', 5500000.00, 'Gaji Bulanan', 'Gaji Desember 2025 (termasuk kenaikan)'),
+    -> ('2025-12-05', 600000.00, 'Hasil Usaha Sampingan', 'Keuntungan jualan online minggu kedua');
+Query OK, 15 rows affected (0.182 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+MariaDB [keuangan_pribadi]> INSERT INTO pengeluaran (tanggal_pengeluaran, jumlah_pengeluaran, kategori_pengeluaran, keterangan) VALUES
+    -> ('2025-10-01', 1200000.00, 'Sewa & Kost', 'Bayar kost bulan Oktober'),
+    -> ('2025-10-02', 350000.00, 'Tagihan', 'Bayar tagihan listrik dan air'),
+    -> ('2025-10-05', 700000.00, 'Belanja Bulanan', 'Belanja kebutuhan pokok di supermarket'),
+    -> ('2025-10-07', 150000.00, 'Transportasi', 'Isi bensin motor untuk sebulan'),
+    -> ('2025-10-10', 75000.00, 'Makanan & Minuman', 'Makan siang di luar'),
+    -> ('2025-10-12', 250000.00, 'Hiburan', 'Nonton film di bioskop dan beli popcorn'),
+    -> ('2025-10-16', 300000.00, 'Pendidikan', 'Beli buku referensi kuliah'),
+    -> ('2025-10-20', 120000.00, 'Kesehatan', 'Beli vitamin dan suplemen'),
+    -> ('2025-10-25', 50000.00, 'Pulsa & Internet', 'Isi ulang kuota internet'),
+    -> ('2025-11-01', 1200000.00, 'Sewa & Kost', 'Bayar kost bulan November'),
+    -> ('2025-11-02', 400000.00, 'Tagihan', 'Bayar tagihan internet dan TV kabel'),
+    -> ('2025-11-06', 850000.00, 'Belanja Bulanan', 'Belanja kebutuhan rumah tangga'),
+    -> ('2025-11-15', 180000.00, 'Transportasi', 'Servis rutin motor'),
+    -> ('2025-11-21', 200000.00, 'Hadiah & Donasi', 'Kado pernikahan teman'),
+    -> ('2025-11-28', 95000.00, 'Makanan & Minuman', 'Traktir teman makan');
+Query OK, 15 rows affected (0.027 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+MariaDB [keuangan_pribadi]> INSERT INTO tabungan (tanggal_transaksi, jenis_transaksi, jumlah, keterangan) VALUES
+    -> ('2025-10-02', 'Menabung', 1000000.00, 'Tabungan dari gaji Oktober'),
+    -> ('2025-10-06', 'Menabung', 500000.00, 'Menabung dari hasil freelance'),
+    -> ('2025-10-15', 'Penarikan', 200000.00, 'Untuk dana darurat perbaikan laptop'),
+    -> ('2025-10-18', 'Menabung', 300000.00, 'Sisa uang jajan'),
+    -> ('2025-10-28', 'Menabung', 750000.00, 'Tabungan dari sisa proyek'),
+    -> ('2025-11-02', 'Menabung', 1000000.00, 'Tabungan dari gaji November'),
+    -> ('2025-11-05', 'Menabung', 250000.00, 'Menabung dari hasil usaha sampingan'),
+    -> ('2025-11-10', 'Menabung', 150000.00, 'Menabung dari cashback'),
+    -> ('2025-11-16', 'Penarikan', 500000.00, 'Untuk biaya servis kendaraan'),
+    -> ('2025-11-20', 'Menabung', 400000.00, 'Tabungan dari komisi'),
+    -> ('2025-11-25', 'Menabung', 100000.00, 'Menabung sisa uang'),
+    -> ('2025-11-29', 'Menabung', 1500000.00, 'Menabung dari bonus akhir tahun'),
+    -> ('2025-12-02', 'Menabung', 1200000.00, 'Tabungan dari gaji Desember'),
+    -> ('2025-12-04', 'Penarikan', 300000.00, 'Untuk beli kado akhir tahun'),
+    -> ('2025-12-06', 'Menabung', 300000.00, 'Menabung dari hasil usaha sampingan');
+Query OK, 15 rows affected (0.046 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+MariaDB [keuangan_pribadi]> select * from pemasukan;
++--------------+-------------------+------------------+------------------------+-----------------------------------------+
+| id_pemasukan | tanggal_pemasukan | jumlah_pemasukan | sumber_pemasukan       | keterangan                              |
++--------------+-------------------+------------------+------------------------+-----------------------------------------+
+|            1 | 2025-10-01        |       5000000.00 | Gaji Bulanan           | Gaji Oktober 2025                       |
+|            2 | 2025-10-05        |        750000.00 | Proyek Freelance       | Desain logo untuk klien A               |
+|            3 | 2025-10-10        |        300000.00 | Penjualan Barang Bekas | Jual meja belajar                       |
+|            4 | 2025-10-15        |       1500000.00 | Bonus Kinerja          | Bonus kuartal ketiga                    |
+|            5 | 2025-10-20        |        250000.00 | Hadiah                 | Hadiah ulang tahun                      |
+|            6 | 2025-10-25        |       1200000.00 | Proyek Freelance       | Pembuatan website untuk Klien B         |
+|            7 | 2025-11-01        |       5000000.00 | Gaji Bulanan           | Gaji November 2025                      |
+|            8 | 2025-11-03        |        450000.00 | Hasil Usaha Sampingan  | Keuntungan jualan online minggu pertama |
+|            9 | 2025-11-08        |        200000.00 | Cashback               | Cashback dari transaksi e-commerce      |
+|           10 | 2025-11-12        |        900000.00 | Proyek Freelance       | Jasa penulisan artikel                  |
+|           11 | 2025-11-18        |        500000.00 | Komisi Penjualan       | Komisi dari penjualan produk afiliasi   |
+|           12 | 2025-11-22        |        150000.00 | Adsense                | Pendapatan dari blog                    |
+|           13 | 2025-11-26        |       2500000.00 | Bonus Akhir Tahun      | Tantiem dari perusahaan                 |
+|           14 | 2025-12-01        |       5500000.00 | Gaji Bulanan           | Gaji Desember 2025 (termasuk kenaikan)  |
+|           15 | 2025-12-05        |        600000.00 | Hasil Usaha Sampingan  | Keuntungan jualan online minggu kedua   |
++--------------+-------------------+------------------+------------------------+-----------------------------------------+
+15 rows in set (0.024 sec)
+
+MariaDB [keuangan_pribadi]> select * from pengeluaran;
++----------------+---------------------+--------------------+----------------------+-----------------------------------------+
+| id_pengeluaran | tanggal_pengeluaran | jumlah_pengeluaran | kategori_pengeluaran | keterangan                              |
++----------------+---------------------+--------------------+----------------------+-----------------------------------------+
+|              1 | 2025-10-01          |         1200000.00 | Sewa & Kost          | Bayar kost bulan Oktober                |
+|              2 | 2025-10-02          |          350000.00 | Tagihan              | Bayar tagihan listrik dan air           |
+|              3 | 2025-10-05          |          700000.00 | Belanja Bulanan      | Belanja kebutuhan pokok di supermarket  |
+|              4 | 2025-10-07          |          150000.00 | Transportasi         | Isi bensin motor untuk sebulan          |
+|              5 | 2025-10-10          |           75000.00 | Makanan & Minuman    | Makan siang di luar                     |
+|              6 | 2025-10-12          |          250000.00 | Hiburan              | Nonton film di bioskop dan beli popcorn |
+|              7 | 2025-10-16          |          300000.00 | Pendidikan           | Beli buku referensi kuliah              |
+|              8 | 2025-10-20          |          120000.00 | Kesehatan            | Beli vitamin dan suplemen               |
+|              9 | 2025-10-25          |           50000.00 | Pulsa & Internet     | Isi ulang kuota internet                |
+|             10 | 2025-11-01          |         1200000.00 | Sewa & Kost          | Bayar kost bulan November               |
+|             11 | 2025-11-02          |          400000.00 | Tagihan              | Bayar tagihan internet dan TV kabel     |
+|             12 | 2025-11-06          |          850000.00 | Belanja Bulanan      | Belanja kebutuhan rumah tangga          |
+|             13 | 2025-11-15          |          180000.00 | Transportasi         | Servis rutin motor                      |
+|             14 | 2025-11-21          |          200000.00 | Hadiah & Donasi      | Kado pernikahan teman                   |
+|             15 | 2025-11-28          |           95000.00 | Makanan & Minuman    | Traktir teman makan                     |
++----------------+---------------------+--------------------+----------------------+-----------------------------------------+
+15 rows in set (0.001 sec)
+
+MariaDB [keuangan_pribadi]> select * from tabungan;
++-------------+-------------------+-----------------+------------+-------------------------------------+
+| id_tabungan | tanggal_transaksi | jenis_transaksi | jumlah     | keterangan                          |
++-------------+-------------------+-----------------+------------+-------------------------------------+
+|           1 | 2025-10-02        | Menabung        | 1000000.00 | Tabungan dari gaji Oktober          |
+|           2 | 2025-10-06        | Menabung        |  500000.00 | Menabung dari hasil freelance       |
+|           3 | 2025-10-15        | Penarikan       |  200000.00 | Untuk dana darurat perbaikan laptop |
+|           4 | 2025-10-18        | Menabung        |  300000.00 | Sisa uang jajan                     |
+|           5 | 2025-10-28        | Menabung        |  750000.00 | Tabungan dari sisa proyek           |
+|           6 | 2025-11-02        | Menabung        | 1000000.00 | Tabungan dari gaji November         |
+|           7 | 2025-11-05        | Menabung        |  250000.00 | Menabung dari hasil usaha sampingan |
+|           8 | 2025-11-10        | Menabung        |  150000.00 | Menabung dari cashback              |
+|           9 | 2025-11-16        | Penarikan       |  500000.00 | Untuk biaya servis kendaraan        |
+|          10 | 2025-11-20        | Menabung        |  400000.00 | Tabungan dari komisi                |
+|          11 | 2025-11-25        | Menabung        |  100000.00 | Menabung sisa uang                  |
+|          12 | 2025-11-29        | Menabung        | 1500000.00 | Menabung dari bonus akhir tahun     |
+|          13 | 2025-12-02        | Menabung        | 1200000.00 | Tabungan dari gaji Desember         |
+|          14 | 2025-12-04        | Penarikan       |  300000.00 | Untuk beli kado akhir tahun         |
+|          15 | 2025-12-06        | Menabung        |  300000.00 | Menabung dari hasil usaha sampingan |
++-------------+-------------------+-----------------+------------+-------------------------------------+
+15 rows in set (0.002 sec)
+
+MariaDB [keuangan_pribadi]> SELECT * FROM pemasukan
+    -> WHERE tanggal_pemasukan BETWEEN '2025-10-01' AND '2025-10-31';
++--------------+-------------------+------------------+------------------------+---------------------------------+
+| id_pemasukan | tanggal_pemasukan | jumlah_pemasukan | sumber_pemasukan       | keterangan                      |
++--------------+-------------------+------------------+------------------------+---------------------------------+
+|            1 | 2025-10-01        |       5000000.00 | Gaji Bulanan           | Gaji Oktober 2025               |
+|            2 | 2025-10-05        |        750000.00 | Proyek Freelance       | Desain logo untuk klien A       |
+|            3 | 2025-10-10        |        300000.00 | Penjualan Barang Bekas | Jual meja belajar               |
+|            4 | 2025-10-15        |       1500000.00 | Bonus Kinerja          | Bonus kuartal ketiga            |
+|            5 | 2025-10-20        |        250000.00 | Hadiah                 | Hadiah ulang tahun              |
+|            6 | 2025-10-25        |       1200000.00 | Proyek Freelance       | Pembuatan website untuk Klien B |
++--------------+-------------------+------------------+------------------------+---------------------------------+
+6 rows in set (0.095 sec)
+
+MariaDB [keuangan_pribadi]> SELECT * FROM pengeluaran
+    -> WHERE tanggal_pengeluaran BETWEEN '2025-11-10' AND '2025-11-20';
++----------------+---------------------+--------------------+----------------------+--------------------+
+| id_pengeluaran | tanggal_pengeluaran | jumlah_pengeluaran | kategori_pengeluaran | keterangan         |
++----------------+---------------------+--------------------+----------------------+--------------------+
+|             13 | 2025-11-15          |          180000.00 | Transportasi         | Servis rutin motor |
++----------------+---------------------+--------------------+----------------------+--------------------+
+1 row in set (0.049 sec)
+
+MariaDB [keuangan_pribadi]> SELECT * FROM tabungan
+    -> WHERE jenis_transaksi = 'Penarikan' AND tanggal_transaksi BETWEEN '2025-10-01' AND '2025-10-31';
++-------------+-------------------+-----------------+-----------+-------------------------------------+
+| id_tabungan | tanggal_transaksi | jenis_transaksi | jumlah    | keterangan                          |
++-------------+-------------------+-----------------+-----------+-------------------------------------+
+|           3 | 2025-10-15        | Penarikan       | 200000.00 | Untuk dana darurat perbaikan laptop |
++-------------+-------------------+-----------------+-----------+-------------------------------------+
+1 row in set (0.060 sec
